@@ -9,7 +9,10 @@ public class AnimationAndMovementController : MonoBehaviour
     PlayerInput playerInput; // Must be generated first from New Input System
     CharacterController characterController;
     Animator animator;
-
+    public float maxScale = 2.0f;
+    public float minScale = 0.5f;
+    public float normScale = 1f;
+    
     // Variables to store optimized setter/getter parameter IDs
     int isWalkingHash;
     int isRunningHash;
@@ -58,6 +61,7 @@ public class AnimationAndMovementController : MonoBehaviour
         playerInput.CharacterControls.Jump.canceled += OnJump;
         
         SetupJumpVariables();
+
     }
 
     void OnMovementInput(InputAction.CallbackContext context)
@@ -104,18 +108,36 @@ public class AnimationAndMovementController : MonoBehaviour
     void HandleGravity()
     {
         bool isFalling = currentMovement.y <= 0.0f || !isJumpPressed;
-        float fallMultiplier = 2.0f;
+        float fallMultiplier = 3.0f;
+        float fallMultiplierBig = 7.5f;
+        float fallMultiplierSmall = 0.5f;
 
-        // Apply gravity if the playe is grounded or not
+        // Apply gravity if the player is grounded or not
         if(characterController.isGrounded)
         {
             currentMovement.y = groundedGravity;
             currentRunMovement.y = groundedGravity;
         }
-        else if(isFalling)
+        else if(isFalling && transform.localScale.x == normScale)
         {
             float previousYVelocity = currentMovement.y;
             float newYVelocity = currentMovement.y + (gravity * fallMultiplier * Time.deltaTime);
+            float nextYVelocity = Mathf.Max((previousYVelocity + newYVelocity) * .5f, -20.0f);
+            currentMovement.y = nextYVelocity;
+            currentRunMovement.y = nextYVelocity;
+        }
+        else if(isFalling && transform.localScale.x == maxScale)
+        {
+            float previousYVelocity = currentMovement.y;
+            float newYVelocity = currentMovement.y + (gravity * fallMultiplierBig * Time.deltaTime);
+            float nextYVelocity = Mathf.Max((previousYVelocity + newYVelocity) * .5f, -20.0f);
+            currentMovement.y = nextYVelocity;
+            currentRunMovement.y = nextYVelocity;
+        }
+        else if(isFalling && transform.localScale.x == minScale)
+        {
+            float previousYVelocity = currentMovement.y;
+            float newYVelocity = currentMovement.y + (gravity * fallMultiplierSmall * Time.deltaTime);
             float nextYVelocity = Mathf.Max((previousYVelocity + newYVelocity) * .5f, -20.0f);
             currentMovement.y = nextYVelocity;
             currentRunMovement.y = nextYVelocity;
