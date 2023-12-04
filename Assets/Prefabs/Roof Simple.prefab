@@ -258,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3496029250639721393}
   m_Layer: 0
-  m_Name: Roof
+  m_Name: Roof Simple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

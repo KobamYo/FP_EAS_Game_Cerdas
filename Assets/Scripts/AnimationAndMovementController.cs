@@ -21,6 +21,7 @@ public class AnimationAndMovementController : MonoBehaviour
     Vector3 currentMovement;
     Vector3 currentRunMovement; 
     Vector3 appliedMovement;
+    Vector3 cameraRelativeMovement;
     bool isMovementPressed;
     bool isRunPressed;
 
@@ -179,9 +180,9 @@ public class AnimationAndMovementController : MonoBehaviour
         Vector3 positionToLookAt;
 
         // The change of position our character should point to
-        positionToLookAt.x = currentMovement.x;
+        positionToLookAt.x = cameraRelativeMovement.x;
         positionToLookAt.y = 0.0f;
-        positionToLookAt.z = currentMovement.z;
+        positionToLookAt.z = cameraRelativeMovement.z;
         
         // The current rotation of our character
         Quaternion currentRotation = transform.rotation;
@@ -217,11 +218,41 @@ public class AnimationAndMovementController : MonoBehaviour
         }
     }
 
+    Vector3 ConvertToCameraSpace(Vector3 vectorToRotate)
+    {
+        // Store the Y value of the original vector to rotate
+        float currentYValue = vectorToRotate.y; 
+
+        // Get the forward and right directional vectors of the camera
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+
+        // Remove the Y values to ignore upward/downward camera angles
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+
+        // Re-normalized both vectors so they each have a magnitude of 1
+        cameraForward = cameraForward.normalized;
+        cameraRight = cameraRight.normalized;
+
+        // Rotate the x and z VectorToRotate values to camera space
+        Vector3 cameraForwardZProduct = vectorToRotate.z * cameraForward;
+        Vector3 cameraRightXProduct = vectorToRotate.x * cameraRight;
+
+        // The sum of both products is the Vector3 in camera space
+        Vector3 vectorRotatedToCameraSpace = cameraForwardZProduct + cameraRightXProduct;
+        vectorRotatedToCameraSpace.y = currentYValue;
+        return vectorRotatedToCameraSpace;
+    }
+
     // Update is called once per frame
     void Update()
     {
         HandleRotation();
         HandleAnimation();
+
+        // Rotate player input vector to camera space
+        cameraRelativeMovement = ConvertToCameraSpace(appliedMovement);
 
         if(isRunPressed)
         {
@@ -234,7 +265,8 @@ public class AnimationAndMovementController : MonoBehaviour
             appliedMovement.z = currentMovement.z;
         }
 
-        characterController.Move(appliedMovement * Time.deltaTime);
+        // Transform position using Move and the rotated player input
+        characterController.Move(cameraRelativeMovement * Time.deltaTime);
 
         HandleGravity();
         HandleJump();

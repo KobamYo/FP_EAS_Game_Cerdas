@@ -17,7 +17,7 @@ public class PlayerStateMachine : MonoBehaviour
     int jumpCountHash;
 
     // Variables to store player input values
-    Vector2 currentMovementInput;
+    Vector3 currentMovementInput;
     Vector3 currentMovement;
     Vector3 currentRunMovement; 
     Vector3 appliedMovement;
@@ -39,6 +39,7 @@ public class PlayerStateMachine : MonoBehaviour
     float maxJumpTime = 0.75f;
     bool isJumping = false;
     bool requireNewJumpPress = false;
+    bool isJumpAnimating = false;
     int jumpCount = 0;
     Dictionary<int, float> initialJumpVelocities = new Dictionary<int, float>();
     Dictionary<int, float> jumpGravities = new Dictionary<int, float>();
@@ -125,13 +126,6 @@ public class PlayerStateMachine : MonoBehaviour
         jumpGravities.Add(3, thirdJumpGravity);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         HandleRotation();
@@ -144,9 +138,9 @@ public class PlayerStateMachine : MonoBehaviour
         Vector3 positionToLookAt;
 
         // The change of position our character should point to
-        positionToLookAt.x = currentMovement.x;
+        positionToLookAt.x = currentMovementInput.x;
         positionToLookAt.y = 0.0f;
-        positionToLookAt.z = currentMovement.z;
+        positionToLookAt.z = currentMovementInput.z;
         
         // The current rotation of our character
         Quaternion currentRotation = transform.rotation;
@@ -162,17 +156,11 @@ public class PlayerStateMachine : MonoBehaviour
     void OnMovementInput(InputAction.CallbackContext context)
     {
         currentMovementInput = context.ReadValue<Vector2>();
-        currentMovement.x = currentMovementInput.x;
-        currentMovement.z = currentMovementInput.y;
-        currentRunMovement.x = currentMovementInput.x * runMultiplier;
-        currentRunMovement.z = currentMovementInput.y * runMultiplier;
+        // currentMovement.x = currentMovementInput.x;
+        // currentMovement.z = currentMovementInput.y;
+        // currentRunMovement.x = currentMovementInput.x * runMultiplier;
+        // currentRunMovement.z = currentMovementInput.y * runMultiplier;
         isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
-    }
-
-    // Callback handler for run buttons
-    void OnRun(InputAction.CallbackContext context)
-    {
-        isRunPressed = context.ReadValueAsButton();
     }
 
     // Callback handler for jump buttons
@@ -180,6 +168,12 @@ public class PlayerStateMachine : MonoBehaviour
     {
         isJumpPressed = context.ReadValueAsButton();
         requireNewJumpPress = false;
+    }
+
+    // Callback handler for run buttons
+    void OnRun(InputAction.CallbackContext context)
+    {
+        isRunPressed = context.ReadValueAsButton();
     }
 
     void OnEnable()
