@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4703843963007151583}
   - component: {fileID: 5710530574589832323}
   - component: {fileID: 7519994486333780891}
+  - component: {fileID: 5824430316351915323}
   - component: {fileID: -9150811683588751417}
   m_Layer: 0
   m_Name: pathHorizontal
@@ -84,6 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5824430316351915323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278229367507699262}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 0.2, z: 1.0000002}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!114 &-9150811683588751417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +118,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bca848008702e349bcae0fd20bae1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upNeighbours: []
-  rightNeighbours: []
-  downNeighbours: []
-  leftNeighbours: []
+  upNeighbours:
+  - {fileID: -2316095940127871784, guid: 9566163fa3f30ac44a2ca59b9b0afc06, type: 3}
+  - {fileID: -144229704468064773, guid: b4a313253f5c81046a2ec4507c3ac679, type: 3}
+  - {fileID: -9150811683588751417}
+  - {fileID: -6604099291005578835, guid: 207508d234b297d4e9366eec2afb6534, type: 3}
+  - {fileID: 9147891378569808160, guid: e56395000485b0f45be4da83f3e978eb, type: 3}
+  - {fileID: 3155623390266507099, guid: 064ba1fa7ca80f147ab2a10ed22ff7a4, type: 3}
+  - {fileID: 1603414437618816035, guid: 89ec5c40254e0894582c53658fee2979, type: 3}
+  - {fileID: 5976466953105616415, guid: 1192dbde6c186ce41bb96c04896aaec9, type: 3}
+  - {fileID: 3421349542347531138, guid: dccb6e85a39489f41bf63e1726ee54dd, type: 3}
+  - {fileID: 6347334877728189887, guid: d132214c520e15645a5bfba786c36e6e, type: 3}
+  - {fileID: -8988699791562324763, guid: 26b7b781acabb0745ac4705d95d78537, type: 3}
+  - {fileID: 46052503752093802, guid: da5f3021b0e9deb4f923bd7fd38ccec4, type: 3}
+  - {fileID: 6415770501511605772, guid: 7334df603df904341830896d12125545, type: 3}
+  - {fileID: -8300931321410108353, guid: 206cf12f6bb10074fa525ec3a3935036, type: 3}
+  rightNeighbours:
+  - {fileID: -144229704468064773, guid: b4a313253f5c81046a2ec4507c3ac679, type: 3}
+  - {fileID: 5244589660018468005, guid: 6e9830e0a74fc8642b06486b1795d6ad, type: 3}
+  - {fileID: 628634436849419661, guid: e7ed8e5e88ec0d6418d9504d650915f6, type: 3}
+  - {fileID: -9150811683588751417}
+  - {fileID: 4415510149597765689, guid: 31187ee2cfaee044ca119698156718f4, type: 3}
+  - {fileID: -6604099291005578835, guid: 207508d234b297d4e9366eec2afb6534, type: 3}
+  - {fileID: -7510771787038657623, guid: 51732045ed5117941a1e01dbf69844c4, type: 3}
+  downNeighbours:
+  - {fileID: 4851446737714806806, guid: 58698e509cc13ac4389f73e653db7b82, type: 3}
+  - {fileID: 5244589660018468005, guid: 6e9830e0a74fc8642b06486b1795d6ad, type: 3}
+  - {fileID: -9150811683588751417}
+  - {fileID: 4415510149597765689, guid: 31187ee2cfaee044ca119698156718f4, type: 3}
+  - {fileID: 9147891378569808160, guid: e56395000485b0f45be4da83f3e978eb, type: 3}
+  - {fileID: 3155623390266507099, guid: 064ba1fa7ca80f147ab2a10ed22ff7a4, type: 3}
+  - {fileID: 1603414437618816035, guid: 89ec5c40254e0894582c53658fee2979, type: 3}
+  - {fileID: 5976466953105616415, guid: 1192dbde6c186ce41bb96c04896aaec9, type: 3}
+  - {fileID: 3421349542347531138, guid: dccb6e85a39489f41bf63e1726ee54dd, type: 3}
+  - {fileID: 6347334877728189887, guid: d132214c520e15645a5bfba786c36e6e, type: 3}
+  - {fileID: -8988699791562324763, guid: 26b7b781acabb0745ac4705d95d78537, type: 3}
+  - {fileID: 46052503752093802, guid: da5f3021b0e9deb4f923bd7fd38ccec4, type: 3}
+  - {fileID: 6415770501511605772, guid: 7334df603df904341830896d12125545, type: 3}
+  - {fileID: -8300931321410108353, guid: 206cf12f6bb10074fa525ec3a3935036, type: 3}
+  leftNeighbours:
+  - {fileID: -144229704468064773, guid: b4a313253f5c81046a2ec4507c3ac679, type: 3}
+  - {fileID: 5244589660018468005, guid: 6e9830e0a74fc8642b06486b1795d6ad, type: 3}
+  - {fileID: 628634436849419661, guid: e7ed8e5e88ec0d6418d9504d650915f6, type: 3}
+  - {fileID: -9150811683588751417}
+  - {fileID: 4415510149597765689, guid: 31187ee2cfaee044ca119698156718f4, type: 3}
+  - {fileID: -6604099291005578835, guid: 207508d234b297d4e9366eec2afb6534, type: 3}
+  - {fileID: -7510771787038657623, guid: 51732045ed5117941a1e01dbf69844c4, type: 3}
