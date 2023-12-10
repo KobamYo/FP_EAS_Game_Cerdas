@@ -22,16 +22,33 @@ public class ScaleOnClick : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) // Left mouse button
         {
             isScalingUp = true;
-            StartCoroutine(ScaleUp());
+            // StartCoroutine(ScaleUp());
+            Debug.Log("dsdsdasdad");
+            
         }
         else if (Input.GetMouseButtonDown(1)) // Right mouse button
         {
             isScalingUp = false;
-            StartCoroutine(ScaleDown());
+            // StartCoroutine(ScaleDown());
+            Debug.Log("testestetsa");
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            isScalingUp = true;
+            // StartCoroutine(ScaleUp());
+            Debug.Log("dsdsdasdad");
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            isScalingUp = false;
+            // StartCoroutine(ScaleDown());
+            Debug.Log("testestetsa");
         }
     }
 
-     private IEnumerator ScaleUp()
+    private IEnumerator ScaleUp()
     {
         while (transform.localScale.x < maxScale)
         {
