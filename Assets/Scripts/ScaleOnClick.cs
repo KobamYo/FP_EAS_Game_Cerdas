@@ -7,6 +7,7 @@ public class ScaleOnClick : MonoBehaviour
     public float scaleSpeed = 0.1f;
     public float maxScale = 2.0f;
     public float minScale = 0.5f;
+    public float normalScale = 1f;
 
     bool isScalingUp = false;
 
@@ -28,6 +29,10 @@ public class ScaleOnClick : MonoBehaviour
         {
             isScalingUp = false;
             StartCoroutine(ScaleDown());
+        }
+        else if (Input.GetMouseButtonDown(2)) // middle mouse click / scroll wheel
+        {
+            transform.localScale = new Vector3(1, 1, 1);    
         }
     }
 

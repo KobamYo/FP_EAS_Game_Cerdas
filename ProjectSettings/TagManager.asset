@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerEyes
   - Ground
+  - Ghosty
   layers:
   - Default
   - TransparentFX
