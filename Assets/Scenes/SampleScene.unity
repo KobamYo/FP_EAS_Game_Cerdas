@@ -2476,10 +2476,10 @@ MonoBehaviour:
   wallPrefab: {fileID: 1899195548762714944, guid: 1f30f9f31b15a134889f0751f5fafff9, type: 3}
   roofPrefab: {fileID: 2920351468749750611, guid: 89964cac90d591044ad90aec9c6ba91a, type: 3}
   includeRoof: 1
-  width: 1
-  height: 1
+  width: 10
+  height: 2
   cellUnitSize: 1
-  numberOfFloors: 1
+  numberOfFloors: 2
   floors: []
 --- !u!4 &1505372384
 Transform:
