@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    public bool collpased;
+    public bool collapsed;
     public Tile[] tileOptions;
 
     public void CreateCell(bool collapseState, Tile[] tiles)
     {
-        collpased = collapseState;
+        collapsed = collapseState;
         tileOptions = tiles;
     }
 
